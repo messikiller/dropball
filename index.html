@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>drop</title>
-</head>
+<meta charset="utf-8">
+<title>drop</title>
 <style>
-#container{
+
+#container {
     background-color: #CCC;
     padding: 20px;
     width: 500px;
     height: 500px;
 }
-#ball{
+
+#ball {
     background-color: black;
     width: 20px;
     height: 20px;
     border-radius: 20px;
     margin: 0px auto;
 }
+
 </style>
+</head>
+
 <body>
 <div id="container">
     <div id="ball"></div>
 </div>
+
 <script src="//cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
 <script type="text/javascript">
+
 function dropBall(start_time, height)
 {
-    var $r=0;
-    var $option={
+    var $option = {
         url: 'api/api.php',
         type: 'GET',
         data: {
-            "drop_height": height,
-            "move_time": function(){
-                return Math.round(new Date().getTime()/100)-start_time;
+            "drop_height" : height,
+            "move_time" : function(){
+                return Math.round(new Date().getTime()/100) - start_time;
             }
         },
-        success: function(data){
+        success : function(data){
             console.log(data);
-            $('#ball').css('margin-top',parseInt(data));
+            $('#ball').css('margin-top', parseInt(data));
         }
     };
     $.ajax($option);
 }
+
 var start_time = Math.round(new Date().getTime()/100);
-var height=500;
-setInterval("dropBall(start_time, height)",100);
+var height     = 500;
+
+setInterval("dropBall(start_time, height)", 100);
+
 </script>
 </body>
 </html>
